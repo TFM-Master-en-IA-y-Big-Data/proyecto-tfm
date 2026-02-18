@@ -2,13 +2,6 @@
 
 ---
 
-## 📌 Nombre del Proyecto
-
-**CryptoPredict**
-Sistema end-to-end de análisis y predicción probabilística del comportamiento de criptomonedas.
-
----
-
 ## 🎯 Objetivo
 
 Desarrollar un sistema completo que:
