@@ -18,12 +18,96 @@ El proyecto no consiste únicamente en entrenar un modelo, sino en diseñar un s
 
 ---
 
-## 👥 Miembros
+## 👥 Integrantes
 
 * Cristian Cantero López
 * Èric García Dalmases
 * Jesús García Quesada
 * Claudia Tello Calles
+
+---
+
+## 🏗️ Arquitectura resumida
+
+El sistema sigue una arquitectura modular compuesta por:
+
+* Data Layer: Ingesta de datos desde APIs (CoinGecko, Binance) y almacenamiento en Data Lake (Parquet).
+* Data Pipeline: Procesamiento con Apache Spark y orquestación con Airflow (DAG diario ETL + DAG semanal ML).
+* ML Layer: Modelos de clasificación binaria para predicción de tendencias.
+* Backend (API REST): Exposición de predicciones y lógica de negocio mediante FastAPI.
+* Frontend: Interfaz web para consulta de predicciones.
+* BI Layer: Dashboards en Power BI para análisis histórico y métricas.
+
+Flujo general:
+
+APIs Externas → Data Lake / Pipeline de Datos → ML → API (Backend) → Frontend / Dashboard
+
+---
+
+## 🚀 Cómo ejecutar (WIP)
+
+⚠️ El proyecto se encuentra en desarrollo. Estos pasos son provisionales.
+
+1. Clonar el repositorio:
+
+```
+git clone https://github.com/tu-repo/crypto-predict.git
+cd crypto-predict
+```
+
+2. Crear el entorno virtual:
+
+```
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+```
+
+3. Instalar dependencias:
+
+```
+pip install -r requirements.txt
+```
+
+4. Ejecutar la API (cuando esté disponible):
+
+```
+uvicorn src.api.main:app --reload
+```
+
+5. (Opcional) Ejecutar pipelines:
+
+* Airflow para DAGs de datos y ML.
+* Scripts de Spark para procesamiento.
+
+---
+
+## ⚙️ Tecnologías
+
+**Lenguajes**
+
+* Python (Backend + Data) y JavaScript (Frontend)
+
+**Frameworks**
+
+* FastAPI
+* Apache Airflow
+
+**Librerías**
+
+* PySpark
+* Scikit-Learn
+* Pandas
+* Seaborn / Matplotlib
+
+**Base de Datos**
+
+* Data Lake (Parquet)
+* SQL / NoSQL (Firebase)
+
+**Herramientas**
+
+* Power BI
+* GitHub
 
 ---
 
@@ -46,4 +130,4 @@ Cada módulo será desarrollado de manera independiente pero coordinada, siguien
 
 * `main` → versión estable.
 * `develop` → integración de funcionalidades.
-* ramas `feature/*` → desarrollo individual de tareas.
+* `feature/*` → desarrollo individual de tareas.
