@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+
+# Sistema Mac
+.DS_Store
+
+# Datos y modelos (Opcional pero recomendado)
+*.parquet
+*.pkl

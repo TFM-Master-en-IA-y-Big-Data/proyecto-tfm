@@ -1,0 +1,7 @@
+Instalar las dependencias: pip install -r requirements.txt
+
+Ejecutar el servidor: uvicorn src.backend.main:app --reload
+(Si vais a http://127.0.0.1:8000/docs vereis la docu interactiva de la api)
+
+Para abrir el dashboard visual instalar la extension Live Server, click derecho en
+index.html y open with live server ;)
