@@ -1,0 +1,17 @@
+`src/data_pipeline_Clau/`
+
+##  El Pipeline de Datos
+El proyecto sigue un flujo de ingeniería de datos estructurado:
+
+1.  **Ingesta (`ingest.py`)**: Extrae datos brutos en formato JSON directamente de la API de CoinGecko.
+2.  **Transformación (`transform.py`)**: Procesa los datos con **Pandas**, realiza limpieza de tipos y los almacena en archivos **Parquet** (ubicados en `data/processed/`) para optimizar el almacenamiento histórico.
+3.  **Visualizacion de Reportes (visualize.py)**: Genera análisis estáticos de los datos procesados. Lee los archivos Parquet para crear gráficas comparativas (como BTC vs ETH) utilizando las librerías Seaborn y Matplotlib, guardando el resultado como una imagen en la carpeta outputs/
+4.  **Visualización Final (`monitorweb.py`)**: Es el componente estrella del proyecto. Genera un dashboard dinámico que permite visualizar el mercado completo. Despues de Lanzar el monitorweb.py, se genera en la carpeta raiz un html (dashboard_crypto.html) y encontraras los datos recogidos y cosas mas visuales.
+
+## Lanzar la Visualizacion
+Ejecuta el script principal ubicado en la carpeta del pipeline
+ "python src/data_pipeline_Clau/visualize.py"
+
+## Lanzar el Monitor
+Ejecuta el script principal ubicado en la carpeta del pipeline
+ "python src/data_pipeline_Clau/monitorweb.py"
