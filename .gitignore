@@ -3,6 +3,7 @@ env/
 environment/
 .venv/
 
+data/
 *.csv
 *.parquet
 *.pkl

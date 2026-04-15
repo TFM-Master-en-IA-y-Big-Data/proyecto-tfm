@@ -26,7 +26,7 @@
 🚀 CÓMO EJECUTAR (QUICK START)
 
 Terminal 1: Pipeline
-python src/pipeline_maestro.py
+python src/main.py
 
 Terminal 2: Backend
 python -m uvicorn src.backend.main:app --reload

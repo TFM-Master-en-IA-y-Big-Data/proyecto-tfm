@@ -1,0 +1,18 @@
+2026-04-15 20:21:03 | __main__             | INFO     | [TRANSFORMACION] Iniciando transformacion de datos...
+2026-04-15 20:21:03 | __main__             | INFO     | [TRANSFORMACION] Leyendo 1 archivos
+2026-04-15 20:21:04 | __main__             | INFO     | [TRANSFORMACION] Datos combinados: 155 filas
+2026-04-15 20:21:04 | __main__             | INFO     | [TRANSFORMACION] Columnas encontradas: ['coin_id', 'timestamp', 'price_usd', 'volume_24h', 'market_cap']
+2026-04-15 20:21:04 | __main__             | INFO     | [TRANSFORMACION] Columnas después de normalizar: ['coin_id', 'timestamp', 'price_usd', 'volume_24h', 'market_cap']
+2026-04-15 20:21:04 | __main__             | INFO     | [TRANSFORMACION] Limpiando duplicados...
+2026-04-15 20:21:04 | __main__             | INFO     | [TRANSFORMACION] Eliminando nulos...
+2026-04-15 20:21:04 | __main__             | INFO     | [TRANSFORMACION] Normalizando para ML...
+2026-04-15 20:21:04 | __main__             | INFO     | [TRANSFORMACION] Transformacion completada
+2026-04-15 20:21:04 | __main__             | INFO     | [TRANSFORMACION] Guardado en: C:\Users\Usuario\Desktop\tfm-ia\data\processed\dataset_limpio.csv
+2026-04-15 20:21:04 | __main__             | INFO     | [TRANSFORMACION] Shape final: (155, 7)
+2026-04-15 20:21:04 | __main__             | INFO     | [TRANSFORMACION] Primeras filas:
+   coin_id     coin           timestamp     price_usd    volume_24h    market_cap                processed_at
+0  bitcoin  bitcoin 2026-03-17 01:00:00  74858.148701  5.642467e+10  1.496607e+12  2026-04-15T20:21:04.068050
+1  bitcoin  bitcoin 2026-03-18 01:00:00  73926.278992  4.779615e+10  1.479034e+12  2026-04-15T20:21:04.068050
+2  bitcoin  bitcoin 2026-03-19 01:00:00  71255.863503  4.623539e+10  1.425248e+12  2026-04-15T20:21:04.068050
+3  bitcoin  bitcoin 2026-03-20 01:00:00  69871.451480  4.606951e+10  1.397132e+12  2026-04-15T20:21:04.068050
+4  bitcoin  bitcoin 2026-03-21 01:00:00  70552.625300  3.928851e+10  1.411553e+12  2026-04-15T20:21:04.068050

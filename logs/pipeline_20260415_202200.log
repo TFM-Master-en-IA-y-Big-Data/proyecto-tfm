@@ -1,0 +1,12 @@
+2026-04-15 20:22:55 | src.backend.main     | INFO     | [API] Predicción solicitada para bitcoin
+2026-04-15 20:22:55 | src.backend.utils    | INFO     | [UTILS] Cargando modelo desde C:\Users\Usuario\Desktop\tfm-ia\data\models\model.pkl
+2026-04-15 20:22:57 | src.backend.utils    | INFO     | [UTILS] bitcoin: Subida (98.3%)
+2026-04-15 20:22:57 | src.backend.main     | INFO     | [API] Predicción completada: {'coin': 'BITCOIN', 'prediction': 'Subida', 'probability': 0.9833884239196777, 'current_price': 74319.14482546528, 'market_cap': 1487895154797.5408, 'trend_data': [26.983194294835418, 58.968294981278355, 61.12855211085293, 0.0, 100.0, 91.12472771912981, 94.79799002352392], 'risk_level': 'Alto', 'confidence': 0.9833884239196777}
+2026-04-15 20:23:00 | src.backend.main     | INFO     | [API] Predicción solicitada para solana
+2026-04-15 20:23:00 | src.backend.utils    | INFO     | [UTILS] Cargando modelo desde C:\Users\Usuario\Desktop\tfm-ia\data\models\model.pkl
+2026-04-15 20:23:00 | src.backend.utils    | INFO     | [UTILS] solana: Subida (98.3%)
+2026-04-15 20:23:00 | src.backend.main     | INFO     | [API] Predicción completada: {'coin': 'SOLANA', 'prediction': 'Subida', 'probability': 0.9833884239196777, 'current_price': 84.92496884550683, 'market_cap': 48877416689.48011, 'trend_data': [34.74406148657664, 64.51537951853005, 66.94818386995468, 0.0, 100.0, 43.84955145533714, 66.87337101848748], 'risk_level': 'Medio', 'confidence': 0.9833884239196777}
+2026-04-15 20:23:02 | src.backend.main     | INFO     | [API] Predicción solicitada para ethereum
+2026-04-15 20:23:02 | src.backend.utils    | INFO     | [UTILS] Cargando modelo desde C:\Users\Usuario\Desktop\tfm-ia\data\models\model.pkl
+2026-04-15 20:23:02 | src.backend.utils    | INFO     | [UTILS] ethereum: Subida (98.3%)
+2026-04-15 20:23:02 | src.backend.main     | INFO     | [API] Predicción completada: {'coin': 'ETHEREUM', 'prediction': 'Subida', 'probability': 0.9833884239196777, 'current_price': 2352.944019307977, 'market_cap': 284068153124.728, 'trend_data': [0.0, 30.658670430153713, 52.76193821201712, 1.742270481638647, 100.0, 73.40162432741354, 89.65531549229776], 'risk_level': 'Alto', 'confidence': 0.9833884239196777}
