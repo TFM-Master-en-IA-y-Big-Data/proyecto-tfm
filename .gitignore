@@ -1,0 +1,9 @@
+venv/
+env/
+environment/
+.venv/
+
+*.csv
+*.parquet
+*.pkl
+*.joblib

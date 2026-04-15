@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoPredict Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="card">
+        <h1>CryptoPredict</h1>
+        <p>Selecciona una moneda para predecir:</p>
+        <select id="coinSelect">
+            <option value="bitcoin">Bitcoin (BTC)</option>
+            <option value="ethereum">Ethereum (ETH)</option>
+            <option value="solana">Solana (SOL)</option>
+            <option value="cardano">Cardano (ADA)</option>
+            <option value="ripple">Ripple (XRP)</option>
+        </select>
+        <button onclick="obtenerPrediccion()">Predecir Tendencia</button>
+
+        <div id="resultado" style="display: none;">
+            <h2 id="resCoin"></h2>
+            <p id="resTexto"></p>
+            <p>Probabilidad: <span id="resProb"></span></p>
+            <p>Riesgo: <span id="resRiesgo"></span></p>
+            <canvas id="grafica"></canvas>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

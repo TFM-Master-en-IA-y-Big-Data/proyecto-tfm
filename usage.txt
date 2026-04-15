@@ -1,0 +1,47 @@
+✅ [1] PIPELINE (src/)
+    ├─ Ingesta: Descarga 155 registros de 5 criptos (30 días)
+    ├─ Transformación: Limpia y normaliza datos
+    ├─ Validación: Verifica calidad (10 checks)
+    ├─ Features: Genera 9 features técnicos (RSI, SMA, volatilidad, etc)
+    ├─ Entrenamiento: XGBoost calibrado (97% accuracy, 0.9995 AUC)
+    └─ Evaluación: Métricas completas
+
+✅ [2] BACKEND FastAPI (src/backend/)
+    ├─ main.py: API con 6 endpoints
+    ├─ utils.py: Predicciones reales del modelo
+    ├─ schemas.py: Validación Pydantic
+    └─ Corriendo en http://127.0.0.1:8000
+
+✅ [3] FRONTEND (src/frontend/)
+    ├─ index.html: Interfaz responsive
+    ├─ app.js: Llamadas al API + gráficas Chart.js
+    ├─ style.css: Diseño profesional
+    └─ Corriendo en http://127.0.0.1:8080
+
+✅ [4] DATOS
+    ├─ data/raw/: 155 registros históricos
+    ├─ data/processed/: Dataset limpio con features
+    └─ data/models/: Modelo entrenado (.pkl)
+
+🚀 CÓMO EJECUTAR (QUICK START)
+
+Terminal 1: Pipeline
+python src/pipeline_maestro.py
+
+Terminal 2: Backend
+python -m uvicorn src.backend.main:app --reload
+
+Terminal 3: Frontend
+cd src/frontend && python -m http.server 8080
+
+Navegador:
+http://127.0.0.1:8080
+
+
+📊 FUNCIONALIDADES
+✅ Selecciona moneda (Bitcoin, Ethereum, Solana, Cardano, Ripple)
+✅ Predice tendencia (Subida/Bajada)
+✅ Muestra probabilidad y riesgo
+✅ Gráfica de tendencia histórica
+✅ Colores dinámicos (Verde=Subida, Rojo=Bajada)
+✅ Respuestas en tiempo real

@@ -1,0 +1,77 @@
+/* src/frontend/style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 500px;
+    text-align: center;
+}
+
+select, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover { 
+    background-color: #0056b3; 
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#resultado { 
+    margin-top: 20px; 
+    padding: 20px; 
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+/* ✅ ESTILOS PARA SUBIDA (Verde) */
+.subida { 
+    background-color: #d4edda; 
+    color: #155724;
+    border: 2px solid #28a745;
+}
+
+.subida h2 {
+    color: #28a745;
+}
+
+/* ✅ ESTILOS PARA BAJADA (Rojo) */
+.bajada { 
+    background-color: #f8d7da; 
+    color: #721c24;
+    border: 2px solid #dc3545;
+}
+
+.bajada h2 {
+    color: #dc3545;
+}
+
+#grafica {
+    margin-top: 20px;
+    max-height: 300px;
+}
