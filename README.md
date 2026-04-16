@@ -4,17 +4,18 @@
 
 ## 🎯 Objetivo
 
-Desarrollar un sistema completo que:
+Desarrollar un sistema completo de análisis y predicción de criptomonedas que permita:
 
-* Construya un dataset estructurado de criptomonedas.
-* Analice su comportamiento histórico.
-* Prediga probabilísticamente su evolución.
-* Exponga el modelo mediante una API.
-* Muestre los resultados en una interfaz web interactiva.
+* Construir y procesar un dataset estructurado a partir de datos reales de mercado.
+* Analizar el comportamiento histórico de criptomonedas.
+* Generar variables predictivas basadas en análisis técnico.
+* Entrenar modelos de Machine Learning para predicción de tendencias.
+* Exponer el sistema mediante una API REST.
+* Visualizar resultados en una interfaz web interactiva y dashboards analíticos.
 
-Aplicado inicialmente a criptomonedas como **Bitcoin (BTC)** y **Ethereum (ETH)**, entre otras.
+El sistema está orientado inicialmente a criptomonedas, aunque es extensible a cualquier activo financiero.
 
-El proyecto no consiste únicamente en entrenar un modelo, sino en diseñar un sistema completo de análisis y predicción financiera combinando Big Data, Machine Learning y desarrollo web.
+Este proyecto no se limita al entrenamiento de un modelo, sino que implementa una arquitectura completa end-to-end de Data Engineering + Machine Learning + Backend + Frontend.
 
 ---
 
@@ -24,6 +25,55 @@ El proyecto no consiste únicamente en entrenar un modelo, sino en diseñar un s
 * Èric García Dalmases
 * Jesús García Quesada
 * Claudia Tello Calles
+
+---
+
+## 🧠 Estado del proyecto (MVP - Fase 2)
+
+En la presente fase se dispone de una versión funcional inicial (MVP), orientada a validar la arquitectura técnica, la integración entre componentes y la viabilidad del sistema predictivo.
+
+✅ Funcionalidades completadas
+
+* Pipeline de datos completo:
+    * Ingesta de datos históricos de criptomonedas.
+    * Transformación, limpieza y validación de datos.
+* Generación automática de features de análisis técnico:
+    * RSI, medias móviles, volatilidad, entre otras.
+* Sistema de Machine Learning:
+    * Entrenamiento de modelos XGBoost.
+    * Reentrenamiento con calibración de probabilidades.
+    * Evaluación mediante métricas como accuracy y ROC-AUC.
+* Backend funcional con FastAPI:
+    * Endpoints para consulta de datos y predicciones.
+* Frontend web conectado a la API:
+    * Interfaz gráfica para visualización de resultados.
+* Dashboard analítico adicional:
+    * Visualización de tendencias y análisis exploratorio.
+
+---
+
+## ⚠️ Funcionalidades parcialmente implementadas
+
+* Uso de dataset reducido (~155 registros reales):
+    * Válido para pruebas de lógica, no representativo de entorno productivo.
+* Modelo predictivo en entorno controlado:
+    * Pendiente de validación con datos en tiempo real.
+* Interfaz de usuario funcional pero básica:
+    * Sin sistema de login ni personalización avanzada.
+* Pipeline parcialmente automatizado:
+    * Algunos procesos se ejecutan de forma manual.
+
+---
+
+## 🚀 Aspectos pendientes (Fase 3)
+
+* Ampliación del dataset hasta ~9.000 registros.
+* Automatización completa del pipeline (ETL + ML).
+* Reentrenamiento periódico del modelo.
+* Mejora del sistema predictivo en tiempo real.
+* Optimización del frontend (UX/UI + nuevas visualizaciones).
+* Despliegue en entorno productivo.
+* Refuerzo de seguridad, escalabilidad y monitorización.
 
 ---
 
@@ -68,16 +118,53 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Ejecutar la API (cuando esté disponible):
+4. Ejecución del sistema (orden recomendado):
+
+Terminal 1 - Pipeline + modelo ML
 
 ```
-uvicorn src.api.main:app --reload
+python src/main.py
 ```
 
-5. (Opcional) Ejecutar pipelines:
+Este proceso:
 
-* Airflow para DAGs de datos y ML.
-* Scripts de Spark para procesamiento.
+* Ingesta datos.
+* Genera features.
+* Entrena modelo.
+* Guarda modelo en disco.
+
+Terminal 2 - Backend (API FastAPI)
+
+```
+python -m uvicorn src.backend.main:app --reload
+```
+
+📍 Disponible en: http://127.0.0.1:8000
+
+Terminal 3 - Frontend
+
+```
+cd src/frontend
+python -m http.server 8080
+```
+
+📍 Disponible en: http://127.0.0.1:8080
+
+5. Dashboard analítico:
+
+El sistema incluye un dashboard adicional generado automáticamente:
+
+```
+python src/reports/create_dashboard.py
+```
+
+Esto genera:
+
+```
+src/frontend/dashboard_crypto.html
+```
+
+📍 Acceso: http://127.0.0.1:8080/dashboard_crypto.html
 
 ---
 
@@ -96,6 +183,7 @@ uvicorn src.api.main:app --reload
 
 * PySpark
 * Scikit-Learn
+* XGBoost
 * Pandas
 * Seaborn / Matplotlib
 
@@ -123,6 +211,7 @@ crypto-predict/
 ├── environment/          # Entorno virtual de Python
 ├── src/                  # Código fuente (modelos, API, lógica del sistema)
 ├── .gitignore
+├── .requiremnts.txt
 └── README.md
 ```
 
@@ -131,3 +220,7 @@ Cada módulo será desarrollado de manera independiente pero coordinada, siguien
 * `main` → versión estable.
 * `develop` → integración de funcionalidades.
 * `feature/*` → desarrollo individual de tareas.
+
+## 📌 Nota final
+
+Este sistema representa un **MVP funcional completo de un sistema de predicción financiera end-to-end**, integrando ingesta de datos, pipeline, machine learning, backend y frontend en una única arquitectura modular.

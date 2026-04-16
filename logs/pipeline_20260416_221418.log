@@ -1,0 +1,9 @@
+2026-04-16 22:14:21 | src.backend.main     | INFO     | [API] Acceso a home
+2026-04-16 22:16:17 | src.backend.main     | INFO     | [API] Predicción solicitada para ethereum
+2026-04-16 22:16:17 | src.backend.utils    | INFO     | [UTILS] Cargando modelo desde C:\Users\Usuario\Desktop\proyectos\crypto-predict\data\models\model.pkl
+2026-04-16 22:16:19 | src.backend.utils    | INFO     | [UTILS] ethereum: Bajada (98.2%)
+2026-04-16 22:16:19 | src.backend.main     | INFO     | [API] Predicción completada: {'coin': 'ETHEREUM', 'prediction': 'Bajada', 'probability': 0.9818314909934998, 'current_price': 2358.152148144321, 'market_cap': 284549912905.7308, 'trend_data': [29.429135082051204, 51.924330004841465, 0.0, 100.0, 72.92999156100383, 93.22219277500203, 92.37008307200409], 'risk_level': 'Alto', 'confidence': 0.9818314909934998}
+2026-04-16 22:16:24 | src.backend.main     | INFO     | [API] Predicción solicitada para bitcoin
+2026-04-16 22:16:24 | src.backend.utils    | INFO     | [UTILS] Cargando modelo desde C:\Users\Usuario\Desktop\proyectos\crypto-predict\data\models\model.pkl
+2026-04-16 22:16:24 | src.backend.utils    | INFO     | [UTILS] bitcoin: Subida (98.4%)
+2026-04-16 22:16:24 | src.backend.main     | INFO     | [API] Predicción completada: {'coin': 'BITCOIN', 'prediction': 'Subida', 'probability': 0.9840909838676453, 'current_price': 75407.54125062733, 'market_cap': 1507641994909.369, 'trend_data': [47.64689627697627, 49.39240286517111, 0.0, 80.80087153970369, 73.62957418523884, 87.65726177364449, 100.0], 'risk_level': 'Alto', 'confidence': 0.9840909838676453}
