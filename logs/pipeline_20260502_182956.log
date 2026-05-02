@@ -1,0 +1,23 @@
+2026-05-02 18:29:56 | __main__             | INFO     | [VALIDACION] Validando dataset...
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Dataset no vacío
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Sin duplicados (crypto + open_time)
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Columna 'crypto' existe
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Columna 'open_time' existe
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Columna 'open_price' existe
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Columna 'high_price' existe
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Columna 'low_price' existe
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Columna 'close_price' existe
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Columna 'volume' existe
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Columna 'close_time' existe
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Columna 'market_cap' existe
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Sin nulos en open_price
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Sin nulos en close_price
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Sin nulos en volume
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Precios > 0
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Volumen >= 0
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   high_price >= low_price
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Datos recientes (< 7 días)
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Exactamente 5 cryptos
+2026-05-02 18:29:56 | __main__             | INFO     | [OK]   Filas por crypto uniformes
+2026-05-02 18:29:56 | __main__             | INFO     | [FEATURES] Construyendo dataset con features...
+2026-05-02 18:29:56 | __main__             | WARNING  | [FEATURES] findspark no disponible, asumiendo Spark en PATH
