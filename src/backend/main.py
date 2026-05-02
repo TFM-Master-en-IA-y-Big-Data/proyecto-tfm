@@ -7,18 +7,16 @@ from fastapi.middleware.cors import CORSMiddleware
 import sys
 from pathlib import Path
 
-# ✅ IMPORTS AJUSTADOS (porque estamos dentro de src/)
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))  # Subir a raíz
-from src.config_pipeline import MODEL_PATH, DATASET_FEATURES_FILE
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+from src.config_pipeline import MODEL_PATH, DATASET_FEATURES_FILE, COINS
 from src.logging_config import setup_logging
 from src.backend.schemas import PredictionResponse
 from src.backend.utils import cargar_modelo, obtener_prediccion_real
 
 logger = setup_logging(__name__)
 
-app = FastAPI(title="CryptoPredict API - Integrado con Pipeline")
+app = FastAPI(title="CryptoPredict API")
 
-# CORS para que frontend acceda
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -26,89 +24,108 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ==================== ENDPOINTS ====================
+# ← Lista de monedas tomada directamente del config
+ALLOWED_COINS = COINS  # ["bitcoin", "ethereum", "solana", "binancecoin", "ripple"]
+
 
 @app.get("/")
 def home():
-    """Health check del API"""
-    logger.info("[API] Acceso a home")
+    """Health check del API."""
     return {
-        "mensaje": "CryptoPredict API - Pipeline Integrado",
-        "status": "online",
-        "version": "1.0"
+        "mensaje": "CryptoPredict API",
+        "status":  "online",
+        "version": "2.0",
     }
+
 
 @app.get("/model-status")
 def model_status():
-    """Verifica si el modelo está cargado"""
+    """Verifica si el modelo está disponible."""
     try:
         model = cargar_modelo()
         if model is None:
             return {"status": "error", "mensaje": "Modelo no encontrado"}
         return {
-            "status": "ok",
+            "status":         "ok",
             "modelo_cargado": True,
-            "ruta": str(MODEL_PATH)
+            "ruta":           str(MODEL_PATH),
         }
     except Exception as e:
         logger.error(f"[API] Error verificando modelo: {e}")
         return {"status": "error", "mensaje": str(e)}
 
+
 @app.get("/predict/{symbol}", response_model=PredictionResponse)
 async def get_prediction(symbol: str):
-    """
-    ✨ PREDICCIÓN REAL usando el modelo entrenado
-    """
-    allowed = ["bitcoin", "ethereum", "solana", "cardano", "ripple"]
+    """Predicción de precio para una crypto usando el modelo entrenado."""
     symbol_lower = symbol.lower()
-    
-    if symbol_lower not in allowed:
+
+    if symbol_lower not in ALLOWED_COINS:
         raise HTTPException(
             status_code=404,
-            detail=f"Moneda no encontrada. Monedas soportadas: {allowed}"
+            detail=f"Moneda no soportada. Disponibles: {ALLOWED_COINS}",
         )
-    
+
     try:
         logger.info(f"[API] Predicción solicitada para {symbol_lower}")
-        
-        # Cargar modelo
+
         model = cargar_modelo()
         if model is None:
             raise HTTPException(
                 status_code=500,
-                detail="Modelo no disponible. Ejecuta primero: python src/pipeline_maestro.py"
+                detail="Modelo no disponible. Ejecuta primero: python src/pipeline_maestro.py",
             )
-        
-        # Obtener predicción real del pipeline
-        prediction_result = obtener_prediccion_real(symbol_lower, model)
-        
-        logger.info(f"[API] Predicción completada: {prediction_result}")
-        
-        return prediction_result
-        
+
+        result = obtener_prediccion_real(symbol_lower, model)
+        logger.info(f"[API] Predicción completada para {symbol_lower}")
+        return result
+
     except HTTPException:
         raise
     except Exception as e:
         logger.error(f"[API] Error en predicción: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+
 @app.get("/coins")
 def get_available_coins():
-    """Lista de monedas disponibles"""
+    """Lista de monedas disponibles."""
     return {
-        "coins": ["bitcoin", "ethereum", "solana", "cardano", "ripple"],
-        "count": 5
+        "coins": ALLOWED_COINS,
+        "count": len(ALLOWED_COINS),
     }
+
 
 @app.get("/metrics")
 def get_metrics():
-    """Métricas del modelo entrenado"""
-    return {
-        "accuracy": 0.96,
-        "roc_auc": 0.98,
-        "features": 9,
-        "training_samples": 155
-    }
+    """
+    Métricas reales del modelo — se leen del CSV de evaluación si existe,
+    si no devuelve un placeholder.
+    """
+    import pandas as pd
+    from src.config_pipeline import OUTPUTS_DIR
+
+    output_file = OUTPUTS_DIR / "predicciones_evaluacion.csv"
+
+    try:
+        if not output_file.exists():
+            return {"status": "sin_evaluar", "mensaje": "Ejecuta evaluate.py primero"}
+
+        df = pd.read_csv(output_file)
+        mae  = float((df["y_real"] - df["y_predicho"]).abs().mean())
+        rmse = float(((df["y_real"] - df["y_predicho"]) ** 2).mean() ** 0.5)
+
+        return {
+            "status":   "ok",
+            "mae":      round(mae, 4),
+            "rmse":     round(rmse, 4),
+            "features": len([c for c in df.columns if c not in ["crypto", "timestamp"]]),
+            "samples":  len(df),
+        }
+    except Exception as e:
+        logger.error(f"[API] Error leyendo métricas: {e}")
+        return {"status": "error", "mensaje": str(e)}
+
 
 if __name__ == "__main__":
     import uvicorn
