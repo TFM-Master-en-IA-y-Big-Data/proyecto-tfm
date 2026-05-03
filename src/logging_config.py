@@ -26,7 +26,7 @@ def setup_logging(name, level="INFO"):
     
     # File handler (opcional, para auditoría)
     from pathlib import Path
-    logs_dir = Path("logs")
+    logs_dir = Path("logs/app")
     logs_dir.mkdir(exist_ok=True)
     
     fh = logging.FileHandler(

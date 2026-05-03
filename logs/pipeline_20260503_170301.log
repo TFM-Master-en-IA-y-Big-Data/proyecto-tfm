@@ -1,0 +1,16 @@
+2026-05-03 17:03:01 | __main__             | INFO     | [TRANSFORMACION] Iniciando transformación de datos...
+2026-05-03 17:03:01 | __main__             | INFO     | [TRANSFORMACION] Leyendo 1 archivo(s)
+2026-05-03 17:03:01 | __main__             | INFO     | [TRANSFORMACION] Filas cargadas: 43760
+2026-05-03 17:03:01 | __main__             | INFO     | [TRANSFORMACION] Columnas: ['crypto', 'open_time', 'open_price', 'high_price', 'low_price', 'close_price', 'volume', 'close_time', 'market_cap']
+2026-05-03 17:03:01 | __main__             | INFO     | [TRANSFORMACION] Convirtiendo columnas numéricas a float64...
+2026-05-03 17:03:01 | __main__             | INFO     | [TRANSFORMACION] Eliminando duplicados...
+2026-05-03 17:03:01 | __main__             | INFO     | [TRANSFORMACION] Eliminando nulos en columnas críticas...
+2026-05-03 17:03:01 | __main__             | INFO     | [TRANSFORMACION] Shape final: (43760, 10)
+2026-05-03 17:03:01 | __main__             | INFO     | [TRANSFORMACION] Guardado en: C:\Users\Usuario\Desktop\tfm-ia\data\processed\data_lake\all_cryptos.parquet
+2026-05-03 17:03:01 | __main__             | INFO     | [TRANSFORMACION] Primeras filas:
+        crypto           open_time  open_price  high_price  low_price  close_price    volume              close_time    market_cap                processed_at
+0  BinanceCoin 2025-05-04 00:00:00      599.36      600.20     599.30       599.85  4480.068 2025-05-04 00:59:59.999  8.742052e+10  2026-05-03T17:03:01.855246
+1  BinanceCoin 2025-05-04 01:00:00      599.85      600.33     598.80       599.69  4002.263 2025-05-04 01:59:59.999  8.742052e+10  2026-05-03T17:03:01.855246
+2  BinanceCoin 2025-05-04 02:00:00      599.69      600.49     598.82       599.07  4785.131 2025-05-04 02:59:59.999  8.742052e+10  2026-05-03T17:03:01.855246
+3  BinanceCoin 2025-05-04 03:00:00      599.07      600.30     598.24       599.80  4082.496 2025-05-04 03:59:59.999  8.742052e+10  2026-05-03T17:03:01.855246
+4  BinanceCoin 2025-05-04 04:00:00      599.80      600.22     597.35       597.78  7241.640 2025-05-04 04:59:59.999  8.742052e+10  2026-05-03T17:03:01.855246

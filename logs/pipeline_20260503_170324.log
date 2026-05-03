@@ -1,0 +1,34 @@
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Iniciando reentrenamiento calibrado...
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Cargados 43760 registros
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Columnas disponibles: ['crypto', 'timestamp', 'price_usd', 'market_cap', 'change_1h_pct', 'change_24h_pct', 'change_7d_pct', 'volatility_30d', 'rsi_14', 'volume_24h', 'crypto_encoded', 'hour', 'day_of_week', 'month']
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Filas tras eliminar NaN: 42920 (840 eliminadas)
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] X shape: (42920, 11) | y shape: (42920,)
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Target — min: 1.1625 | max: 126011.1800 | mean: 20058.0651
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Validación cruzada temporal con 5 folds...
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Fold 1: train=7155 | test=7153
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Fold 1: MAE=1822.6427 | RMSE=3709.1672 | R²=0.9934 | best_iter=301
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Fold 2: train=14308 | test=7153
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Fold 2: MAE=329.6222 | RMSE=1435.3097 | R²=0.9990 | best_iter=253
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Fold 3: train=21461 | test=7153
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Fold 3: MAE=19086.5847 | RMSE=29298.4610 | R²=0.3467 | best_iter=18
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Fold 4: train=28614 | test=7153
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Fold 4: MAE=6420.0681 | RMSE=17938.4652 | R²=0.6801 | best_iter=175
+2026-05-03 17:03:24 | __main__             | INFO     | [RETRAIN] Fold 5: train=35767 | test=7153
+2026-05-03 17:03:25 | __main__             | INFO     | [RETRAIN] Fold 5: MAE=375.6416 | RMSE=1157.5887 | R²=0.9984 | best_iter=243
+2026-05-03 17:03:25 | __main__             | INFO     | [RETRAIN] Métricas medias — MAE=5606.9119 | RMSE=10707.7984 | R²=0.8035
+2026-05-03 17:03:25 | __main__             | INFO     | [RETRAIN] Número óptimo de estimadores (media folds): 198
+2026-05-03 17:03:25 | __main__             | INFO     | [RETRAIN] Entrenando modelo final con 198 estimadores...
+2026-05-03 17:03:25 | __main__             | INFO     | [RETRAIN] Métricas finales (train completo) — MAE=125.4686 | RMSE=311.7539 | R²=0.9999
+2026-05-03 17:03:25 | __main__             | INFO     | [RETRAIN] Importancia de features:
+market_cap        0.646563
+volatility_30d    0.254072
+volume_24h        0.052219
+month             0.040192
+crypto_encoded    0.005588
+change_7d_pct     0.000732
+change_24h_pct    0.000276
+rsi_14            0.000208
+hour              0.000087
+day_of_week       0.000033
+change_1h_pct     0.000031
+2026-05-03 17:03:25 | __main__             | INFO     | [RETRAIN] Modelo guardado en: C:\Users\Usuario\Desktop\tfm-ia\data\models\model.pkl
