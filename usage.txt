@@ -41,6 +41,10 @@ http://127.0.0.1:8080
 bash start_all.sh
 (opcional) sin pipeline: bash start_all.sh --skip-pipeline
 
+✅ En Windows (sin bash):
+python start_all.py
+(opcional) sin pipeline: python start_all.py --skip-pipeline
+
 
 📊 FUNCIONALIDADES
 ✅ Selecciona moneda (Bitcoin, Ethereum, Solana, Cardano, Ripple)
