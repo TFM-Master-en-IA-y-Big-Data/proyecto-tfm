@@ -1,9 +1,9 @@
 ✅ [1] PIPELINE (src/)
-    ├─ Ingesta: Descarga 155 registros de 5 criptos (30 días)
+    ├─ Ingesta: Descarga un total de 43760 registros de 5 criptos
     ├─ Transformación: Limpia y normaliza datos
     ├─ Validación: Verifica calidad (10 checks)
     ├─ Features: Genera 9 features técnicos (RSI, SMA, volatilidad, etc)
-    ├─ Entrenamiento: XGBoost calibrado (97% accuracy, 0.9995 AUC)
+    ├─ Entrenamiento: XGBoost calibrado con un total de 42920
     └─ Evaluación: Métricas completas
 
 ✅ [2] BACKEND FastAPI (src/backend/)
@@ -19,8 +19,9 @@
     └─ Corriendo en http://127.0.0.1:8080
 
 ✅ [4] DATOS
-    ├─ data/raw/: 155 registros históricos
-    ├─ data/processed/: Dataset limpio con features
+    ├─ data/raw/: Registros históricos
+    ├─ data/processed/data_lake/: Dataset limpio con features
+    ├─ data/ml/features/: Dataset listo para entrenamiento
     └─ data/models/: Modelo entrenado (.pkl)
 
 🚀 CÓMO EJECUTAR (QUICK START)
