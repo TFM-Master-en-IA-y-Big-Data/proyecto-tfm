@@ -1,8 +1,0 @@
-2026-05-02 18:59:50 | src.backend.main     | INFO     | [API] Predicción solicitada para ethereum
-2026-05-02 18:59:50 | src.backend.utils    | INFO     | [UTILS] Cargando modelo desde C:\Users\Usuario\Desktop\tfm-ia\data\models\model.pkl
-2026-05-02 18:59:52 | src.backend.utils    | INFO     | [UTILS] ethereum | actual=2309.5700 | pred=2289.2183
-2026-05-02 18:59:52 | src.backend.main     | INFO     | [API] Predicción completada para ethereum
-2026-05-02 18:59:55 | src.backend.main     | INFO     | [API] Predicción solicitada para bitcoin
-2026-05-02 18:59:55 | src.backend.utils    | INFO     | [UTILS] Cargando modelo desde C:\Users\Usuario\Desktop\tfm-ia\data\models\model.pkl
-2026-05-02 18:59:55 | src.backend.utils    | INFO     | [UTILS] bitcoin | actual=78463.7700 | pred=80525.3047
-2026-05-02 18:59:55 | src.backend.main     | INFO     | [API] Predicción completada para bitcoin

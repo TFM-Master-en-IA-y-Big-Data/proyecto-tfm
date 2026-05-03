@@ -1,3 +1,0 @@
-2026-05-02 19:21:42 | src.backend.main     | INFO     | [API] Predicción solicitada para bitcoin
-2026-05-02 19:21:42 | src.backend.utils    | INFO     | [UTILS] Cargando modelo desde C:\Users\Usuario\Desktop\tfm-ia\data\models\model.pkl
-2026-05-02 19:21:44 | src.backend.main     | INFO     | [API] Predicción completada para bitcoin
