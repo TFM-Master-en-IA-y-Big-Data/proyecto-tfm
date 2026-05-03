@@ -8,8 +8,48 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
-    <div class="card">
-        <h1>CryptoPredict</h1>
+    <div class="card" id="authCard">
+        <div class="brand">
+            <div class="brand-mark">CP</div>
+            <div class="brand-text">
+                <h1>CryptoPredict</h1>
+                <p class="subtitle">Accede para continuar</p>
+            </div>
+        </div>
+
+        <div class="auth-switch">
+            <span class="auth-switch-label">Iniciar sesión</span>
+            <label class="switch" aria-label="Cambiar entre iniciar sesión y registrarse">
+                <input id="authSwitch" type="checkbox" />
+                <span class="slider"></span>
+            </label>
+            <span class="auth-switch-label">Registrarse</span>
+        </div>
+
+        <form id="loginForm" autocomplete="on">
+            <input id="loginEmail" type="email" placeholder="Correo" required />
+            <input id="loginPassword" type="password" placeholder="Contraseña" required />
+            <button id="loginSubmit" type="submit">Iniciar sesión</button>
+            <p class="error" id="loginError" aria-live="polite"></p>
+        </form>
+
+        <form id="registerForm" autocomplete="on" hidden>
+            <input id="registerNombre" type="text" placeholder="Nombre" required />
+            <input id="registerApellidos" type="text" placeholder="Apellidos" required />
+            <input id="registerEmail" type="email" placeholder="Correo" required />
+            <input id="registerPassword" type="password" placeholder="Contraseña" required />
+            <p class="hint">La contraseña debe tener al menos 6 caracteres.</p>
+            <button id="registerSubmit" type="submit">Crear cuenta</button>
+            <p class="error" id="registerError" aria-live="polite"></p>
+        </form>
+    </div>
+
+    <div class="card" id="appCard" hidden>
+        <div class="userbar">
+            <div class="userline">Sesión iniciada: <span id="userEmail"></span></div>
+            <button id="logoutButton" class="danger" type="button">Cerrar sesión</button>
+        </div>
+
         <p>Selecciona una moneda para predecir:</p>
         <select id="coinSelect">
             <option value="bitcoin">Bitcoin (BTC)</option>
@@ -18,7 +58,7 @@
             <option value="binancecoin">Binance Coin (BNB)</option>
             <option value="ripple">Ripple (XRP)</option>
         </select>
-        <button onclick="obtenerPrediccion()">Predecir Tendencia</button>
+        <button id="predictButton" type="button">Predecir Tendencia</button>
 
         <div id="resultado" style="display: none;">
             <h2 id="resCoin"></h2>
@@ -28,6 +68,6 @@
             <canvas id="grafica"></canvas>
         </div>
     </div>
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
