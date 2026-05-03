@@ -37,6 +37,10 @@ cd src/frontend && python -m http.server 8080
 Navegador:
 http://127.0.0.1:8080
 
+✅ Alternativa (1 solo comando):
+bash start_all.sh
+(opcional) sin pipeline: bash start_all.sh --skip-pipeline
+
 
 📊 FUNCIONALIDADES
 ✅ Selecciona moneda (Bitcoin, Ethereum, Solana, Cardano, Ripple)
