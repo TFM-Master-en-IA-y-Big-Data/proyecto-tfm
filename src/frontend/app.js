@@ -8,6 +8,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
 let chart;
+let marketIntervalId = null;
+let sparklineCharts = new Map();
+let marketData = [];
 
 function el(id) {
   return document.getElementById(id);
@@ -24,6 +27,197 @@ function setError(id, message) {
 function setBusy(button, busy, busyText, idleText) {
   button.disabled = busy;
   button.textContent = busy ? busyText : idleText;
+}
+
+function getAllowedCoins() {
+  const select = el("coinSelect");
+  if (!select) return [];
+  return Array.from(select.options).map((o) => o.value);
+}
+
+function formatUSD(value) {
+  if (typeof value !== "number" || Number.isNaN(value)) return "-";
+  return value.toLocaleString(undefined, {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: value >= 1 ? 2 : 8,
+  });
+}
+
+function clearSparklines() {
+  for (const chart of sparklineCharts.values()) {
+    try {
+      chart.destroy();
+    } catch {}
+  }
+  sparklineCharts = new Map();
+}
+
+function setMarketStatus(text, variant = "info") {
+  const badge = el("marketStatus");
+  if (!badge) return;
+  badge.textContent = text;
+
+  if (variant === "error") {
+    badge.style.background = "rgba(239, 68, 68, 0.10)";
+    badge.style.color = "rgba(239, 68, 68, 0.95)";
+    badge.style.borderColor = "rgba(239, 68, 68, 0.18)";
+    return;
+  }
+
+  badge.style.background = "rgba(37, 99, 235, 0.10)";
+  badge.style.color = "rgba(37, 99, 235, 0.90)";
+  badge.style.borderColor = "rgba(37, 99, 235, 0.20)";
+}
+
+function renderMarketList() {
+  const list = el("marketList");
+  if (!list) return;
+
+  const query = (el("marketSearch")?.value || "").trim().toLowerCase();
+  const allowedSet = new Set(getAllowedCoins());
+
+  const filtered = query
+    ? marketData.filter((c) => {
+        const name = (c.name || "").toLowerCase();
+        const symbol = (c.symbol || "").toLowerCase();
+        return name.includes(query) || symbol.includes(query);
+      })
+    : marketData;
+
+  list.innerHTML = "";
+  clearSparklines();
+
+  if (!filtered.length) {
+    const empty = document.createElement("div");
+    empty.className = "hint";
+    empty.textContent = "No hay resultados para esa búsqueda.";
+    list.appendChild(empty);
+    return;
+  }
+
+  filtered.forEach((coin) => {
+    const row = document.createElement("div");
+    row.className = "market-row";
+    row.dataset.coinId = coin.id;
+
+    const pct = Number(coin.price_change_percentage_24h);
+    const pctOk = Number.isFinite(pct);
+    const pctClass = pctOk && pct >= 0 ? "positive" : "negative";
+    const pctText = pctOk ? `${pct >= 0 ? "▲" : "▼"} ${Math.abs(pct).toFixed(2)}%` : "-";
+
+    const supported = allowedSet.has(coin.id);
+    const hintText = supported ? "Predicción disponible" : "Predicción no disponible";
+
+    row.innerHTML = `
+      <div class="mr-rank">${coin.market_cap_rank ?? "-"}</div>
+      <div class="mr-coin">
+        <img src="${coin.image}" alt="" />
+        <div class="mr-coin-text">
+          <div class="mr-coin-name">${coin.name} <span style="font-weight:700;color:rgba(15,23,42,0.45);font-size:12px;">· ${hintText}</span></div>
+          <div class="mr-coin-symbol">${(coin.symbol || "").toUpperCase()}</div>
+        </div>
+      </div>
+      <div class="mr-price">${formatUSD(coin.current_price)}</div>
+      <div class="mr-change ${pctClass}">${pctText}</div>
+      <div class="mr-chart"><canvas id="spark-${coin.id}"></canvas></div>
+    `;
+
+    row.addEventListener("click", () => {
+      setError("marketError", "");
+      setText("marketHint", "");
+
+      if (!supported) {
+        setText(
+          "marketHint",
+          "Esta cripto aún no tiene predicción en el modelo. Selecciona una de las criptos soportadas (Bitcoin, Ethereum, Solana, BNB, Ripple)."
+        );
+        return;
+      }
+
+      el("coinSelect").value = coin.id;
+      setText("marketHint", `Seleccionada: ${coin.name}. Ya puedes predecir en el panel de la izquierda.`);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    list.appendChild(row);
+
+    const spark = coin?.sparkline_in_7d?.price;
+    if (Array.isArray(spark) && spark.length) {
+      const color = pctOk && pct >= 0 ? "#10b981" : "#ef4444";
+      const canvas = row.querySelector(`#spark-${coin.id}`);
+      const ctx = canvas.getContext("2d");
+      const c = new window.Chart(ctx, {
+        type: "line",
+        data: {
+          labels: spark.map((_, i) => i),
+          datasets: [
+            {
+              data: spark,
+              borderColor: color,
+              borderWidth: 2,
+              pointRadius: 0,
+              fill: false,
+              tension: 0.4,
+            },
+          ],
+        },
+        options: {
+          events: [],
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { enabled: false } },
+          scales: { x: { display: false }, y: { display: false } },
+        },
+      });
+      sparklineCharts.set(coin.id, c);
+    }
+  });
+}
+
+async function updateMarket() {
+  try {
+    setMarketStatus("Actualizando…");
+    const url =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=24h";
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    if (!Array.isArray(data)) throw new Error("Respuesta inválida");
+
+    marketData = data;
+    setError("marketError", "");
+    setMarketStatus("En vivo");
+    renderMarketList();
+  } catch (error) {
+    setMarketStatus("Sin conexión", "error");
+    setError(
+      "marketError",
+      "No se pudo cargar el market (CoinGecko). Inténtalo de nuevo en unos segundos."
+    );
+  }
+}
+
+function startMarket() {
+  if (marketIntervalId) return;
+  if (!el("marketList")) return;
+
+  updateMarket();
+  marketIntervalId = window.setInterval(updateMarket, 20000);
+}
+
+function stopMarket() {
+  if (marketIntervalId) {
+    window.clearInterval(marketIntervalId);
+    marketIntervalId = null;
+  }
+  clearSparklines();
+  marketData = [];
+  const list = el("marketList");
+  if (list) list.innerHTML = "";
+  setError("marketError", "");
+  setText("marketHint", "");
+  setMarketStatus("Pausado");
 }
 
 function syncEmailBetweenForms(fromMode, toMode) {
@@ -248,6 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   el("logoutButton").addEventListener("click", handleLogout);
   el("predictButton").addEventListener("click", obtenerPrediccion);
+  el("marketSearch")?.addEventListener("input", () => renderMarketList());
 
   onAuthStateChanged(auth, (user) => {
     const authCard = el("authCard");
@@ -259,6 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setText("userEmail", user.email || user.displayName || "");
       setError("loginError", "");
       setError("registerError", "");
+      startMarket();
     } else {
       authCard.hidden = false;
       appCard.hidden = true;
@@ -266,6 +462,7 @@ document.addEventListener("DOMContentLoaded", () => {
       el("loginPassword").value = "";
       el("registerPassword").value = "";
       el("resultado").style.display = "none";
+      stopMarket();
     }
   });
 });

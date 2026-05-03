@@ -44,28 +44,61 @@
         </form>
     </div>
 
-    <div class="card" id="appCard" hidden>
+    <div class="card app-card" id="appCard" hidden>
         <div class="userbar">
             <div class="userline">Sesión iniciada: <span id="userEmail"></span></div>
             <button id="logoutButton" class="danger" type="button">Cerrar sesión</button>
         </div>
 
-        <p>Selecciona una moneda para predecir:</p>
-        <select id="coinSelect">
-            <option value="bitcoin">Bitcoin (BTC)</option>
-            <option value="ethereum">Ethereum (ETH)</option>
-            <option value="solana">Solana (SOL)</option>
-            <option value="binancecoin">Binance Coin (BNB)</option>
-            <option value="ripple">Ripple (XRP)</option>
-        </select>
-        <button id="predictButton" type="button">Predecir Tendencia</button>
+        <div class="app-layout">
+            <div class="panel">
+                <div class="panel-head">
+                    <h2 class="panel-title">Predicción</h2>
+                    <p class="panel-subtitle">Selecciona una cripto soportada y consulta la tendencia</p>
+                </div>
 
-        <div id="resultado" style="display: none;">
-            <h2 id="resCoin"></h2>
-            <p id="resTexto"></p>
-            <p>Probabilidad: <span id="resProb"></span></p>
-            <p>Riesgo: <span id="resRiesgo"></span></p>
-            <canvas id="grafica"></canvas>
+                <label class="field-label" for="coinSelect">Criptomoneda</label>
+                <select id="coinSelect">
+                    <option value="bitcoin">Bitcoin (BTC)</option>
+                    <option value="ethereum">Ethereum (ETH)</option>
+                    <option value="solana">Solana (SOL)</option>
+                    <option value="binancecoin">Binance Coin (BNB)</option>
+                    <option value="ripple">Ripple (XRP)</option>
+                </select>
+                <button id="predictButton" type="button">Predecir Tendencia</button>
+
+                <div id="resultado" style="display: none;">
+                    <h2 id="resCoin"></h2>
+                    <p id="resTexto"></p>
+                    <p>Probabilidad: <span id="resProb"></span></p>
+                    <p>Riesgo: <span id="resRiesgo"></span></p>
+                    <canvas id="grafica"></canvas>
+                </div>
+            </div>
+
+            <div class="panel panel-market">
+                <div class="panel-head">
+                    <div class="panel-head-row">
+                        <h2 class="panel-title">Market Live</h2>
+                        <span class="badge" id="marketStatus">Actualizando…</span>
+                    </div>
+                    <p class="panel-subtitle">Top 100 por market cap (CoinGecko)</p>
+                </div>
+
+                <input id="marketSearch" type="text" placeholder="Buscar (nombre o símbolo)..." />
+                <p class="error" id="marketError" aria-live="polite"></p>
+                <p class="hint" id="marketHint"></p>
+
+                <div class="market-header">
+                    <div class="mh-rank">#</div>
+                    <div class="mh-coin">Moneda</div>
+                    <div class="mh-price">Precio</div>
+                    <div class="mh-change">24h</div>
+                    <div class="mh-chart">7d</div>
+                </div>
+
+                <div class="market-list" id="marketList"></div>
+            </div>
         </div>
     </div>
     <script type="module" src="app.js"></script>

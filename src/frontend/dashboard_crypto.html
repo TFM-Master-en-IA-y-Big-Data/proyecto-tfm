@@ -1,0 +1,152 @@
+
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <title>Clau Crypto Terminal - Pro</title>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+            <style>
+                body { background-color: #0b0e11; color: #eaecef; font-family: 'Inter', sans-serif; }
+                /* Ensanchamos el contenedor principal */
+                .container { max-width: 1400px; }
+                
+                .crypto-card { 
+                    background-color: #161a1e; 
+                    border-radius: 12px; 
+                    border: 1px solid #2b3139;
+                    margin-bottom: 8px;
+                    transition: all 0.2s;
+                    display: flex;
+                    align-items: center;
+                    padding: 12px 20px;
+                }
+                .crypto-card:hover { border-color: #f0b90b; background-color: #1e2329; }
+                
+                /* --- CSS DE ESPACIADO --- */
+                /* Col Moneda: Le damos espacio suficiente */
+                .coin-info { flex: 2; display: flex; align-items: center; min-width: 300px; }
+                
+                /* Col Precio: Espacio propio */
+                .price-info { flex: 1; text-align: right; min-width: 180px; padding-right: 20px; }
+                
+                /* Col Cambio: Separada de la gráfica */
+                .change-info { flex: 1; text-align: right; min-width: 130px; }
+                
+                /* Col Gráfica: El secreto del espaciado (margin-left) */
+                .sparkline-container { 
+                    width: 150px; 
+                    height: 50px; 
+                    margin-left: 30px; /* ¡SEPARACIÓN CLAVE! */
+                    text-align: center;
+                }
+                
+                /* Cabeceras alineadas */
+                .header-row { display: flex; padding: 10px 20px; color: #848e9c; font-size: 0.85rem; text-transform: uppercase; }
+                .header-row .h-coin { flex: 2; min-width: 300px; }
+                .header-row .h-price { flex: 1; min-width: 180px; text-align: right; padding-right: 20px; }
+                .header-row .h-change { flex: 1; min-width: 130px; text-align: right; }
+                .header-row .h-chart { width: 150px; margin-left: 30px; text-align: center; }
+                
+                /* Otros estilos */
+                .text-success { color: #0ecb81 !important; }
+                .text-danger { color: #f6465d !important; }
+                .scroll-area { height: 80vh; overflow-y: auto; padding-right: 10px; }
+                ::-webkit-scrollbar { width: 6px; }
+                ::-webkit-scrollbar-thumb { background: #474d57; border-radius: 10px; }
+            </style>
+        </head>
+        <body>
+            <div class="container py-4">
+                <div class="d-flex justify-content-between align-items-end mb-4">
+                    <div>
+                        <h1 class="fw-bold mb-0">Market <span class="text-warning">Live</span></h1>
+                        <p class="text-muted small">Top 100 criptomonedas con tendencia en tiempo real</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="badge bg-dark border border-secondary p-2">Refresco: 20s</span>
+                    </div>
+                </div>
+
+                <div class="header-row">
+                    <div class="h-coin">Moneda</div>
+                    <div class="h-price">Precio</div>
+                    <div class="h-change">24h %</div>
+                    <div class="h-chart">ÚLTIMOS 7 DÍAS</div>
+                </div>
+
+                <div class="scroll-area" id="market-list">
+                    </div>
+            </div>
+
+            <script>
+                async function updateMarket() {
+                    try {
+                        const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true');
+                        const data = await response.json();
+                        const list = document.getElementById('market-list');
+                        list.innerHTML = '';
+
+                        data.forEach(coin => {
+                            const color = coin.price_change_percentage_24h >= 0 ? '#0ecb81' : '#f6465d';
+                            const sparklineData = coin.sparkline_in_7d.price;
+                            
+                            // Creamos un ID único para cada mini-gráfica
+                            const canvasId = `spark-${coin.id}`;
+                            
+                            const row = document.createElement('div');
+                            row.className = 'crypto-card';
+                            row.innerHTML = `
+                                <div class="coin-info">
+                                    <span class="text-muted me-3" style="width: 25px;">${coin.market_cap_rank}</span>
+                                    <img src="${coin.image}" width="32" class="me-3">
+                                    <div>
+                                        <div class="fw-bold">${coin.name}</div>
+                                        <div class="text-muted small">${coin.symbol.toUpperCase()}</div>
+                                    </div>
+                                </div>
+                                <div class="price-info fw-bold">
+                                    $${coin.current_price.toLocaleString(undefined, {minimumFractionDigits: 2})}
+                                </div>
+                                <div class="change-info ${coin.price_change_percentage_24h >= 0 ? 'text-success' : 'text-danger'} fw-bold">
+                                    ${coin.price_change_percentage_24h >= 0 ? '▲' : '▼'} ${Math.abs(coin.price_change_percentage_24h).toFixed(2)}%
+                                </div>
+                                <div class="sparkline-container">
+                                    <canvas id="${canvasId}"></canvas>
+                                </div>
+                            `;
+                            list.appendChild(row);
+
+                            // Dibujar la Sparkline con Chart.js
+                            new Chart(document.getElementById(canvasId), {
+                                type: 'line',
+                                data: {
+                                    labels: sparklineData.map((_, i) => i),
+                                    datasets: [{
+                                        data: sparklineData,
+                                        borderColor: color,
+                                        borderWidth: 2,
+                                        pointRadius: 0,
+                                        fill: false,
+                                        tension: 0.4
+                                    }]
+                                },
+                                options: {
+                                    events: [],
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    plugins: { legend: { display: false }, tooltip: { enabled: false } },
+                                    scales: { x: { display: false }, y: { display: false } }
+                                }
+                            });
+                        });
+                    } catch (e) { console.error("Error cargando datos", e); }
+                }
+
+                // Actualizar cada 20 segundos
+                setInterval(updateMarket, 20000);
+                updateMarket();
+            </script>
+        </body>
+        </html>
+        
