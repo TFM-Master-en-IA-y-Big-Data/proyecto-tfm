@@ -1,0 +1,33 @@
+2026-05-03 16:30:02 | __main__             | INFO     | [TRAIN] Iniciando entrenamiento...
+2026-05-03 16:30:02 | __main__             | INFO     | [TRAIN] Cargados 43755 registros
+2026-05-03 16:30:02 | __main__             | INFO     | [TRAIN] Columnas disponibles: ['crypto', 'timestamp', 'price_usd', 'market_cap', 'change_1h_pct', 'change_24h_pct', 'change_7d_pct', 'volatility_30d', 'rsi_14', 'volume_24h', 'crypto_encoded', 'hour', 'day_of_week', 'month']
+2026-05-03 16:30:02 | __main__             | INFO     | [TRAIN] Features que entran al modelo: ['market_cap', 'change_1h_pct', 'change_24h_pct', 'change_7d_pct', 'volatility_30d', 'rsi_14', 'volume_24h', 'crypto_encoded', 'hour', 'day_of_week', 'month']
+2026-05-03 16:30:02 | __main__             | INFO     | [TRAIN] Filas tras eliminar NaN de warm-up: 42915 (840 eliminadas)
+2026-05-03 16:30:02 | __main__             | INFO     | [TRAIN] X shape: (42915, 11) | y shape: (42915,)
+2026-05-03 16:30:02 | __main__             | INFO     | [TRAIN] Target — min: 1.1625 | max: 126011.1800 | mean: 20058.4942
+2026-05-03 16:30:02 | __main__             | INFO     | [TRAIN] Ejecutando validación cruzada temporal con 5 folds...
+2026-05-03 16:30:02 | __main__             | INFO     | [TRAIN] Fold 1: train=7155 filas | test=7152 filas
+2026-05-03 16:30:02 | __main__             | INFO     | [TRAIN] Fold 1: MAE=2130.8474 | RMSE=4190.0009 | R²=0.9916
+2026-05-03 16:30:02 | __main__             | INFO     | [TRAIN] Fold 2: train=14307 filas | test=7152 filas
+2026-05-03 16:30:03 | __main__             | INFO     | [TRAIN] Fold 2: MAE=325.5574 | RMSE=1343.5755 | R²=0.9991
+2026-05-03 16:30:03 | __main__             | INFO     | [TRAIN] Fold 3: train=21459 filas | test=7152 filas
+2026-05-03 16:30:03 | __main__             | INFO     | [TRAIN] Fold 3: MAE=11718.6154 | RMSE=28058.4958 | R²=0.4006
+2026-05-03 16:30:03 | __main__             | INFO     | [TRAIN] Fold 4: train=28611 filas | test=7152 filas
+2026-05-03 16:30:03 | __main__             | INFO     | [TRAIN] Fold 4: MAE=6453.9462 | RMSE=17582.8325 | R²=0.6928
+2026-05-03 16:30:03 | __main__             | INFO     | [TRAIN] Fold 5: train=35763 filas | test=7152 filas
+2026-05-03 16:30:03 | __main__             | INFO     | [TRAIN] Fold 5: MAE=391.3400 | RMSE=1241.7313 | R²=0.9981
+2026-05-03 16:30:03 | __main__             | INFO     | [TRAIN] Métricas medias — MAE=4204.0613 | RMSE=10483.3272 | R²=0.8164
+2026-05-03 16:30:03 | __main__             | INFO     | [TRAIN] Entrenando modelo final sobre todos los datos...
+2026-05-03 16:30:03 | __main__             | INFO     | [TRAIN] Importancia de features:
+market_cap        0.580003
+volatility_30d    0.371875
+month             0.030558
+volume_24h        0.009921
+crypto_encoded    0.007219
+change_24h_pct    0.000125
+rsi_14            0.000104
+change_7d_pct     0.000092
+hour              0.000050
+day_of_week       0.000033
+change_1h_pct     0.000021
+2026-05-03 16:30:03 | __main__             | INFO     | [TRAIN] Modelo guardado en: C:\Users\Usuario\Desktop\tfm-ia\data\models\model.pkl
