@@ -9,6 +9,7 @@ from xgboost import XGBRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import TimeSeriesSplit
 from pathlib import Path
+from datetime import datetime
 import sys
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -163,6 +164,9 @@ def retrain_calibrated_model():
         # 9. Guardar modelo
         # ------------------------------------------------------------------
         MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
+        fecha = datetime.now().strftime("%Y-%m-%d")
+        model_path_versioned = MODEL_PATH.parent / f"model_{fecha}.pkl"
+        joblib.dump(model, model_path_versioned)
         joblib.dump(model, MODEL_PATH)
 
         logger.info(f"[RETRAIN] Modelo guardado en: {MODEL_PATH}")
