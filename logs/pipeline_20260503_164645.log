@@ -1,0 +1,52 @@
+2026-05-03 16:46:45 | __main__             | INFO     | [EVALUATE] Iniciando evaluación del modelo...
+2026-05-03 16:46:46 | __main__             | INFO     | [EVALUATE] Modelo cargado desde: C:\Users\Usuario\Desktop\tfm-ia\data\models\model.pkl
+2026-05-03 16:46:46 | __main__             | INFO     | [EVALUATE] Dataset cargado: 43755 filas
+2026-05-03 16:46:46 | __main__             | INFO     | [EVALUATE] Filas tras eliminar NaN: 42915 (840 eliminadas)
+2026-05-03 16:46:46 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:46 | __main__             | INFO     | [EVALUATE] MÉTRICAS GLOBALES (IN-SAMPLE)
+2026-05-03 16:46:46 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:46 | __main__             | INFO     | MAE  : 128.7850
+2026-05-03 16:46:46 | __main__             | INFO     | RMSE : 325.5170
+2026-05-03 16:46:46 | __main__             | INFO     | R²   : 0.9999
+2026-05-03 16:46:46 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:46 | __main__             | INFO     | [EVALUATE] HOLDOUT TEMPORAL (OUT-OF-SAMPLE)
+2026-05-03 16:46:46 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:46 | __main__             | INFO     | Train: 34332 filas
+2026-05-03 16:46:46 | __main__             | INFO     | Test : 8583 filas
+2026-05-03 16:46:46 | __main__             | INFO     | MAE  : 980.4275
+2026-05-03 16:46:46 | __main__             | INFO     | RMSE : 2328.1634
+2026-05-03 16:46:46 | __main__             | INFO     | R²   : 0.9932
+2026-05-03 16:46:46 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:46 | __main__             | INFO     | [EVALUATE] VALIDACIÓN TEMPORAL POR FOLDS
+2026-05-03 16:46:46 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:46 | __main__             | INFO     | Fold 1: MAE=1830.5012 | RMSE=3728.0758 | R²=0.9934
+2026-05-03 16:46:46 | __main__             | INFO     | Fold 2: MAE=329.1976 | RMSE=1437.6021 | R²=0.9990
+2026-05-03 16:46:46 | __main__             | INFO     | Fold 3: MAE=12083.7579 | RMSE=28936.7652 | R²=0.3625
+2026-05-03 16:46:46 | __main__             | INFO     | Fold 4: MAE=6403.1740 | RMSE=17910.7843 | R²=0.6812
+2026-05-03 16:46:47 | __main__             | INFO     | Fold 5: MAE=381.6336 | RMSE=1166.1019 | R²=0.9983
+2026-05-03 16:46:47 | __main__             | INFO     | Media folds: MAE=4205.6529 | RMSE=10635.8659 | R²=0.8069
+2026-05-03 16:46:47 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:47 | __main__             | INFO     | [EVALUATE] MÉTRICAS POR CRYPTO
+2026-05-03 16:46:47 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:47 | __main__             | INFO     | BinanceCoin     MAE=26.6155 | RMSE=49.0048 | R²=0.9135
+2026-05-03 16:46:47 | __main__             | INFO     | Bitcoin         MAE=539.2932 | RMSE=721.7881 | R²=0.9983
+2026-05-03 16:46:47 | __main__             | INFO     | Ethereum        MAE=49.6741 | RMSE=75.2861 | R²=0.9917
+2026-05-03 16:46:47 | __main__             | INFO     | Ripple          MAE=11.9678 | RMSE=14.0645 | R²=-543.4738
+2026-05-03 16:46:47 | __main__             | INFO     | Solana          MAE=16.3741 | RMSE=23.6888 | R²=0.7273
+2026-05-03 16:46:47 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:47 | __main__             | INFO     | [EVALUATE] IMPORTANCIA DE FEATURES
+2026-05-03 16:46:47 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:47 | __main__             | INFO     | 
+market_cap        0.633805
+volatility_30d    0.262997
+volume_24h        0.052499
+month             0.043565
+crypto_encoded    0.005685
+change_7d_pct     0.000842
+change_24h_pct    0.000255
+rsi_14            0.000206
+hour              0.000084
+day_of_week       0.000034
+change_1h_pct     0.000027
+2026-05-03 16:46:47 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:47 | __main__             | INFO     | [EVALUATE] Predicciones exportadas: C:\Users\Usuario\Desktop\tfm-ia\outputs\predicciones_evaluacion.csv

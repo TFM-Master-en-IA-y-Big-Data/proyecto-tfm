@@ -1,0 +1,59 @@
+2026-05-03 16:45:34 | __main__             | INFO     | 
+2026-05-03 16:45:34 | __main__             | INFO     | ============================================================
+2026-05-03 16:45:34 | __main__             | INFO     | INICIANDO PIPELINE MAESTRO
+2026-05-03 16:45:34 | __main__             | INFO     | ============================================================
+2026-05-03 16:45:34 | __main__             | INFO     | 
+2026-05-03 16:45:34 | __main__             | INFO     | ============================================================
+2026-05-03 16:45:34 | __main__             | INFO     | >> [1]   Ingesta
+2026-05-03 16:45:34 | __main__             | INFO     | ============================================================
+2026-05-03 16:45:34 | __main__             | INFO     | [INGESTA] Iniciando descarga de datos...
+2026-05-03 16:45:34 | __main__             | INFO     | [INGESTA] Procesando Bitcoin...
+2026-05-03 16:45:43 | __main__             | INFO     | [INGESTA] Bitcoin OK — 8751 filas
+2026-05-03 16:45:43 | __main__             | INFO     | [INGESTA] Procesando Ethereum...
+2026-05-03 16:45:52 | __main__             | INFO     | [INGESTA] Ethereum OK — 8751 filas
+2026-05-03 16:45:52 | __main__             | INFO     | [INGESTA] Procesando Solana...
+2026-05-03 16:46:00 | __main__             | INFO     | [INGESTA] Solana OK — 8751 filas
+2026-05-03 16:46:00 | __main__             | INFO     | [INGESTA] Procesando BinanceCoin...
+2026-05-03 16:46:09 | __main__             | INFO     | [INGESTA] BinanceCoin OK — 8751 filas
+2026-05-03 16:46:09 | __main__             | INFO     | [INGESTA] Procesando Ripple...
+2026-05-03 16:46:17 | __main__             | INFO     | [INGESTA] Ripple OK — 8751 filas
+2026-05-03 16:46:18 | __main__             | INFO     | [INGESTA] Total filas: 43755
+2026-05-03 16:46:18 | __main__             | INFO     | [INGESTA] Columnas: ['crypto', 'open_time', 'open_price', 'high_price', 'low_price', 'close_price', 'volume', 'close_time', 'market_cap']
+2026-05-03 16:46:18 | __main__             | INFO     | [INGESTA] Guardado en: C:\Users\Usuario\Desktop\tfm-ia\data\raw\raw_cryptos.parquet
+2026-05-03 16:46:18 | __main__             | INFO     | [OK] [1]   Ingesta completada en 44.04s
+2026-05-03 16:46:18 | __main__             | INFO     | 
+2026-05-03 16:46:18 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:18 | __main__             | INFO     | >> [2]   Transformacion
+2026-05-03 16:46:18 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:19 | __main__             | INFO     | [OK] [2]   Transformacion completada en 0.95s
+2026-05-03 16:46:19 | __main__             | INFO     | 
+2026-05-03 16:46:19 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:19 | __main__             | INFO     | >> [2.5] Validacion
+2026-05-03 16:46:19 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:19 | __main__             | INFO     | [OK] [2.5] Validacion completada en 0.61s
+2026-05-03 16:46:19 | __main__             | INFO     | 
+2026-05-03 16:46:19 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:19 | __main__             | INFO     | >> [3]   Features
+2026-05-03 16:46:19 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:38 | __main__             | INFO     | [OK] [3]   Features completada en 18.27s
+2026-05-03 16:46:38 | __main__             | INFO     | 
+2026-05-03 16:46:38 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:38 | __main__             | INFO     | >> [4]   Entrenamiento
+2026-05-03 16:46:38 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:40 | __main__             | INFO     | [OK] [4]   Entrenamiento completada en 2.90s
+2026-05-03 16:46:40 | __main__             | INFO     | 
+2026-05-03 16:46:40 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:40 | __main__             | INFO     | >> [4.1] Reentrenamiento
+2026-05-03 16:46:40 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:44 | __main__             | INFO     | [OK] [4.1] Reentrenamiento completada en 3.40s
+2026-05-03 16:46:44 | __main__             | INFO     | 
+2026-05-03 16:46:44 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:44 | __main__             | INFO     | >> [4.5] Evaluacion
+2026-05-03 16:46:44 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:47 | __main__             | INFO     | [OK] [4.5] Evaluacion completada en 3.03s
+2026-05-03 16:46:47 | __main__             | INFO     | 
+2026-05-03 16:46:47 | __main__             | INFO     | ============================================================
+2026-05-03 16:46:47 | __main__             | INFO     | Etapas completadas : 7/7
+2026-05-03 16:46:47 | __main__             | INFO     | Tiempo total       : 73.20s
+2026-05-03 16:46:47 | __main__             | INFO     | [EXITO] Pipeline completado correctamente
+2026-05-03 16:46:47 | __main__             | INFO     | ============================================================
