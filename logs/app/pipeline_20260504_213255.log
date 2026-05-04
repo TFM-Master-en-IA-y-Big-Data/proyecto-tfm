@@ -1,0 +1,3 @@
+2026-05-04 21:33:47 | src.backend.main     | INFO     | [API] Predicción solicitada para bitcoin
+2026-05-04 21:33:47 | src.backend.utils    | INFO     | [UTILS] Cargando modelo desde C:\Users\Usuario\Desktop\crypto-predict\crypto-predict\data\models\model.pkl
+2026-05-04 21:33:48 | src.backend.main     | INFO     | [API] Predicción completada para bitcoin
