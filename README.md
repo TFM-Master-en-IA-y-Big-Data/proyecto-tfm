@@ -4,18 +4,19 @@
 
 ## 🎯 Objetivo
 
+CryptoPredict es un sistema end-to-end de análisis y predicción de criptomonedas que integra Data Engineering, Machine Learning, Backend y Frontend en una única arquitectura modular.
+
 Desarrollar un sistema completo de análisis y predicción de criptomonedas que permita:
 
-* Construir y procesar un dataset estructurado a partir de datos reales de mercado.
-* Analizar el comportamiento histórico de criptomonedas.
-* Generar variables predictivas basadas en análisis técnico.
-* Entrenar modelos de Machine Learning para predicción de tendencias.
-* Exponer el sistema mediante una API REST.
-* Visualizar resultados en una interfaz web interactiva y dashboards analíticos.
+* Ingerir datos reales de mercado (OHLCV y capitalización).
+* Procesar y transformar grandes volúmenes de información financiera.
+* Generar variables de análisis técnico automáticamente.
+* Entrenar modelos predictivos basados en Machine Learning.
+* Servir predicciones mediante una API REST.
+* Visualizar resultados mediante una interfaz web y dashboards analíticos.
+* Automatizar todo el ciclo de vida del dato y del modelo.
 
 El sistema está orientado inicialmente a criptomonedas, aunque es extensible a cualquier activo financiero.
-
-Este proyecto no se limita al entrenamiento de un modelo, sino que implementa una arquitectura completa end-to-end de Data Engineering + Machine Learning + Backend + Frontend.
 
 ---
 
@@ -28,52 +29,56 @@ Este proyecto no se limita al entrenamiento de un modelo, sino que implementa un
 
 ---
 
-## 🧠 Estado del proyecto (MVP - Fase 2)
+## 🧠 Estado del proyecto (Entrega TFM - v1.0.0)
 
-En la presente fase se dispone de una versión funcional inicial (MVP), orientada a validar la arquitectura técnica, la integración entre componentes y la viabilidad del sistema predictivo.
+El proyecto ha evolucionado desde un MVP funcional hasta una **plataforma completa de predicción financiera automatizada**.
 
 ✅ Funcionalidades completadas
 
 * Pipeline de datos completo:
-    * Ingesta de datos históricos de criptomonedas.
-    * Transformación, limpieza y validación de datos.
-* Generación automática de features de análisis técnico:
-    * RSI, medias móviles, volatilidad, entre otras.
+    * Ingesta de datos de Binance y CoinGecko.
+    * Limpieza, transformación y validación.
+    * Generación de features técnicas (RSI, volatilidad, medias móviles, etc.).
+    * Dataset final de 42.920 observaciones válidas.
 * Sistema de Machine Learning:
-    * Entrenamiento de modelos XGBoost.
-    * Reentrenamiento con calibración de probabilidades.
-    * Evaluación mediante métricas como accuracy y ROC-AUC.
-* Backend funcional con FastAPI:
-    * Endpoints para consulta de datos y predicciones.
-* Frontend web conectado a la API:
-    * Interfaz gráfica para visualización de resultados.
-* Dashboard analítico adicional:
-    * Visualización de tendencias y análisis exploratorio.
+    * Entrenamiento de modelos **XGBoost**.
+    * Validación cruzada temporal (TimeSeriesSplit).
+    * Reentrenamiento automático semanal.
+    * Evaluación con métricas globales y por criptomoneda.
+* Backend:
+    * API REST desarrollada con **FastAPI**.
+    * Endpoints para predicción y consulta de datos.
+* Frontend:
+    * Interfaz web conectada a la API.
+    * Visualización de predicciones y tendencias.
+* Dashboard analítico:
+    * Análisis de hasta 100 criptomonedas.
+    * Visualización exploratoria integrada.
+* Sistema de autenticación:
+    * Registro e inicio de sesión con **Firebase Authentication**.
+    * Persistencia de usuarios en Firestore.
 
 ---
 
-## ⚠️ Funcionalidades parcialmente implementadas
+## 🚀 Mejoras respecto a la fase MVP
 
-* Uso de dataset reducido (~155 registros reales):
-    * Válido para pruebas de lógica, no representativo de entorno productivo.
-* Modelo predictivo en entorno controlado:
-    * Pendiente de validación con datos en tiempo real.
-* Interfaz de usuario funcional pero básica:
-    * Sin sistema de login ni personalización avanzada.
-* Pipeline parcialmente automatizado:
-    * Algunos procesos se ejecutan de forma manual.
+* 📊 Incremento del dataset de **155 → 42.920 registros**.
+* ⚙️ Automatización completa del pipeline de datos y ML.
+* 🔁 Reentrenamiento periódico del modelo sin intervención manual.
+* 📈 Integración del dashboard dentro de la aplicación principal.
+* 🧹 Mejora del tratamiento de datos (nulos, duplicados, coherencia temporal).
+* 🧠 Validación cruzada temporal para evitar data leakage.
+* 🧩 Modularización del código y separación por responsabilidades.
 
 ---
 
-## 🚀 Aspectos pendientes (Fase 3)
+## ⚠️ Limitaciones actuales
 
-* Ampliación del dataset hasta ~9.000 registros.
-* Automatización completa del pipeline (ETL + ML).
-* Reentrenamiento periódico del modelo.
-* Mejora del sistema predictivo en tiempo real.
-* Optimización del frontend (UX/UI + nuevas visualizaciones).
-* Despliegue en entorno productivo.
-* Refuerzo de seguridad, escalabilidad y monitorización.
+* Ejecución en entorno local (no productivo).
+* Dependencia de APIs externas (CoinGecko, Binance).
+* Ventana temporal fija de 365 días (decisión de diseño).
+* No se ha implementado escalado distribuido.
+* No dispone de sistema de alertas en tiempo real.
 
 ---
 
@@ -81,22 +86,109 @@ En la presente fase se dispone de una versión funcional inicial (MVP), orientad
 
 El sistema sigue una arquitectura modular compuesta por:
 
-* Data Layer: Ingesta de datos desde APIs (CoinGecko, Binance) y almacenamiento en Data Lake (Parquet).
-* Data Pipeline: Procesamiento con Apache Spark y orquestación con Airflow (DAG diario ETL + DAG semanal ML).
-* ML Layer: Modelos de clasificación binaria para predicción de tendencias.
-* Backend (API REST): Exposición de predicciones y lógica de negocio mediante FastAPI.
+* Data Layer: APIs externas → Data Lake (Parquet).
+* Data Pipeline: Procesamiento con Spark + validación.
+* ML Layer: Modelo XGBoost con validación temporal.
+* Backend: FastAPI (REST API)
 * Frontend: Interfaz web para consulta de predicciones.
-* BI Layer: Dashboards en Power BI para análisis histórico y métricas.
+* BI Layer: Dashboards para análisis histórico y métricas.
 
 Flujo general:
 
-APIs Externas → Data Lake / Pipeline de Datos → ML → API (Backend) → Frontend / Dashboard
+```
+APIs Externas → Data Lake → Pipeline → ML → API (Backend) → Frontend / Dashboard
+```
 
 ---
 
-## 🚀 Cómo ejecutar (WIP)
+## ⚙️ Automatización del sistema
 
-⚠️ El proyecto se encuentra en desarrollo. Estos pasos son provisionales.
+El sistema implementa un sistema de automatización completo basado en Python sin dependencias externas como Airflow o Docker.
+
+### 🧠 Scripts principales
+
+- `setup.py`  
+  Inicializa el sistema completo:
+  - Ingesta inicial de datos
+  - ETL completo
+  - Entrenamiento inicial del modelo
+  - Arranque backend y frontend
+
+- `scheduler.py`  
+  Orquestador de procesos automatizados:
+  - Pipeline diario de datos
+  - Pipeline semanal de reentrenamiento
+  - Ejecución continua en segundo plano
+
+- `start_all.py`  
+  Script principal de ejecución:
+  - Ejecuta `setup.py`
+  - Inicia `scheduler.py`
+
+---
+
+### 🔁 Pipelines automatizados
+
+#### 📅 Pipeline diario (1:00 AM)
+
+- Ingesta de nuevos datos (Binance + CoinGecko).
+- Transformación y limpieza.
+- Validación de calidad.
+- Generación de features con Spark.
+
+---
+
+#### 📅 Pipeline semanal (Lunes 3:00 AM)
+
+- Reentrenamiento del modelo XGBoost.
+- Evaluación del modelo.
+- Exportación de métricas y predicciones.
+
+---
+
+### 📦 Versionado del modelo
+
+Cada reentrenamiento genera:
+
+- `model.pkl` → modelo activo.
+- `model_YYYY-MM-DD.pkl` → versión histórica.
+
+Esto permite trazabilidad y comparación de evolución del modelo.
+
+---
+
+## 📊 Monitorización
+
+El sistema incluye mecanismos completos de observabilidad:
+
+### 📝 Logging estructurado
+
+- Logs por etapa: `[INGEST]`, `[TRANSFORM]`, `[VALIDATE]`, `[FEATURES]`, `[RETRAIN]`, `[EVALUATE]`
+- Ficheros separados por día.
+- Registro de errores con stack traces.
+
+---
+
+### 🧪 Validación de datos
+
+- Detección de duplicados.
+- Control de valores nulos.
+- Validación de coherencia de precios.
+- Control de cobertura temporal.
+
+---
+
+### 📉 Métricas del modelo
+
+- MAE, RMSE, R² global.
+- Validación temporal (holdout 80/20).
+- Cross-validation temporal (5 folds).
+- Métricas por criptomoneda.
+- Importancia de variables.
+
+---
+
+## 🚀 Cómo ejecutar el sistema
 
 1. Clonar el repositorio:
 
@@ -118,53 +210,17 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Ejecución del sistema (orden recomendado):
-
-Terminal 1 - Pipeline + modelo ML
+4. Ejecución del sistema completo:
 
 ```
-python src/main.py
+python start_all.py
 ```
 
-Este proceso:
+Esto ejecuta:
 
-* Ingesta datos.
-* Genera features.
-* Entrena modelo.
-* Guarda modelo en disco.
-
-Terminal 2 - Backend (API FastAPI)
-
-```
-python -m uvicorn src.backend.main:app --reload
-```
-
-📍 Disponible en: http://127.0.0.1:8000
-
-Terminal 3 - Frontend
-
-```
-cd src/frontend
-python -m http.server 8080
-```
-
-📍 Disponible en: http://127.0.0.1:8080
-
-5. Dashboard analítico:
-
-El sistema incluye un dashboard adicional generado automáticamente:
-
-```
-python src/reports/create_dashboard.py
-```
-
-Esto genera:
-
-```
-src/frontend/dashboard_crypto.html
-```
-
-📍 Acceso: http://127.0.0.1:8080/dashboard_crypto.html
+1. Inicialización del sistema (`setup.py`).
+2. Arranque del backend y del frontend.
+3. Activación del scheduler automático (`scheduler.py`).
 
 ---
 
@@ -190,7 +246,7 @@ src/frontend/dashboard_crypto.html
 **Base de Datos**
 
 * Data Lake (Parquet)
-* SQL / NoSQL (Firebase)
+* NoSQL (Firebase)
 
 **Herramientas**
 
@@ -209,18 +265,40 @@ crypto-predict/
 ├── data/                 # Dataset, scripts de generación y procesamiento de datos
 ├── docs/                 # Documentación técnica y memoria del proyecto
 ├── environment/          # Entorno virtual de Python
+├── logs/                 # Logs del sistema
+├── notebooks/            # Notebooks de exploración de datos
+├── outputs/              # Resultados del sistema
 ├── src/                  # Código fuente (modelos, API, lógica del sistema)
 ├── .gitignore
-├── .requiremnts.txt
+├── requirements.txt
+├── scheduler.py          # Automatización del pipeline diario y reentrenamiento semanal
+├── setup.py              # Inicialización del sistema (ETL, modelo, backend y frontend)
+├── start_all.py          # Script principal que lanza setup y scheduler
 └── README.md
 ```
 
-Cada módulo será desarrollado de manera independiente pero coordinada, siguiendo buenas prácticas de control de versiones mediante ramas:
+---
 
-* `main` → versión estable.
-* `develop` → integración de funcionalidades.
-* `feature/*` → desarrollo individual de tareas.
+## 📌 Buenas prácticas aplicadas
+
+* Código modular y limpio.
+* Separación de responsabilidades.
+* Pipeline automatizado.
+* Versionado de modelos.
+* Logging estructurado.
+* Validación de datos robusta.
+* Arquitectura end-to-end.
+
+---
+
+## 🏁 Versión final
+
+📦 Release: `v1.0.0`.
+📅 Estado: Entrega final TFM.
+🚀 Tipo: Sistema completo end-to-end (Data + ML + Backend + Frontend).
+
+--- 
 
 ## 📌 Nota final
 
-Este sistema representa un **MVP funcional completo de un sistema de predicción financiera end-to-end**, integrando ingesta de datos, pipeline, machine learning, backend y frontend en una única arquitectura modular.
+CryptoPredict representa una arquitectura completa de sistema inteligente aplicada al ámbito financiero, integrando desde la ingesta de datos hasta la generación de predicciones automatizadas, con un enfoque realista de ingeniería de datos y machine learning en producción.

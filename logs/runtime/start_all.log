@@ -1,9 +1,9 @@
-2026-05-04 20:08:59,168 | INFO | Lanzando app
-2026-05-04 20:08:59,173 | INFO | app iniciado (PID 11860)
-2026-05-04 20:08:59,173 | INFO | Lanzando scheduler
-2026-05-04 20:08:59,177 | INFO | scheduler iniciado (PID 18144)
-2026-05-04 20:08:59,177 | INFO | Sistema iniciado
-2026-05-04 20:08:59,178 | INFO | Pulsa Ctrl+C para detener
-2026-05-04 20:09:15,746 | INFO | Cerrando procesos...
-2026-05-04 20:09:15,748 | INFO | app detenido
-2026-05-04 20:09:15,748 | INFO | scheduler detenido
+2026-05-04 21:18:55,392 | INFO | Lanzando app
+2026-05-04 21:18:55,397 | INFO | app iniciado (PID 18608)
+2026-05-04 21:18:55,397 | INFO | Lanzando scheduler
+2026-05-04 21:18:55,402 | INFO | scheduler iniciado (PID 28636)
+2026-05-04 21:18:55,402 | INFO | Sistema iniciado
+2026-05-04 21:18:55,402 | INFO | Pulsa Ctrl+C para detener
+2026-05-04 21:19:05,007 | INFO | Cerrando procesos...
+2026-05-04 21:19:05,007 | INFO | app detenido
+2026-05-04 21:19:05,008 | INFO | scheduler detenido
