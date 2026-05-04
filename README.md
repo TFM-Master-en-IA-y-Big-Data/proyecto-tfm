@@ -222,6 +222,8 @@ Esto ejecuta:
 2. Arranque del backend y del frontend.
 3. Activación del scheduler automático (`scheduler.py`).
 
+La aplicación, una vez lanzado el script, está disponible desde: `http://localhost:8080`
+
 ---
 
 ## ⚙️ Tecnologías
