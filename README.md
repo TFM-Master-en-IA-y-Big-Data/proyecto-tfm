@@ -193,7 +193,7 @@ El sistema incluye mecanismos completos de observabilidad:
 1. Clonar el repositorio:
 
 ```
-git clone https://github.com/tu-repo/crypto-predict.git
+git clone https://github.com/TFM-Master-en-IA-y-Big-Data/crypto-predict.git
 cd crypto-predict
 ```
 
