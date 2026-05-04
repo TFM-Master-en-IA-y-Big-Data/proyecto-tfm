@@ -1,0 +1,16 @@
+2026-05-04 21:32:25 | __main__             | INFO     | [TRANSFORMACION] Iniciando transformación de datos...
+2026-05-04 21:32:25 | __main__             | INFO     | [TRANSFORMACION] Leyendo 1 archivo(s)
+2026-05-04 21:32:25 | __main__             | INFO     | [TRANSFORMACION] Filas cargadas: 43780
+2026-05-04 21:32:25 | __main__             | INFO     | [TRANSFORMACION] Columnas: ['crypto', 'open_time', 'open_price', 'high_price', 'low_price', 'close_price', 'volume', 'close_time', 'market_cap']
+2026-05-04 21:32:25 | __main__             | INFO     | [TRANSFORMACION] Convirtiendo columnas numéricas a float64...
+2026-05-04 21:32:25 | __main__             | INFO     | [TRANSFORMACION] Eliminando duplicados...
+2026-05-04 21:32:25 | __main__             | INFO     | [TRANSFORMACION] Eliminando nulos en columnas críticas...
+2026-05-04 21:32:25 | __main__             | INFO     | [TRANSFORMACION] Shape final: (43780, 10)
+2026-05-04 21:32:25 | __main__             | INFO     | [TRANSFORMACION] Guardado en: C:\Users\Usuario\Desktop\crypto-predict\crypto-predict\data\processed\data_lake\all_cryptos.parquet
+2026-05-04 21:32:25 | __main__             | INFO     | [TRANSFORMACION] Primeras filas:
+        crypto           open_time  open_price  high_price  low_price  close_price     volume              close_time    market_cap                processed_at
+0  BinanceCoin 2025-05-05 00:00:00      586.02      588.99     585.83       588.66   5863.367 2025-05-05 00:59:59.999  8.545093e+10  2026-05-04T21:32:25.407895
+1  BinanceCoin 2025-05-05 01:00:00      588.67      588.69     584.11       585.38   7481.327 2025-05-05 01:59:59.999  8.545093e+10  2026-05-04T21:32:25.407895
+2  BinanceCoin 2025-05-05 02:00:00      585.37      588.60     583.55       588.33  12158.477 2025-05-05 02:59:59.999  8.545093e+10  2026-05-04T21:32:25.407895
+3  BinanceCoin 2025-05-05 03:00:00      588.34      588.50     588.20       588.27   5924.128 2025-05-05 03:59:59.999  8.545093e+10  2026-05-04T21:32:25.407895
+4  BinanceCoin 2025-05-05 04:00:00      588.28      590.00     588.18       590.00   6581.073 2025-05-05 04:59:59.999  8.545093e+10  2026-05-04T21:32:25.407895

@@ -1,0 +1,52 @@
+2026-05-04 21:32:51 | __main__             | INFO     | [EVALUATE] Iniciando evaluación del modelo...
+2026-05-04 21:32:51 | __main__             | INFO     | [EVALUATE] Modelo cargado desde: C:\Users\Usuario\Desktop\crypto-predict\crypto-predict\data\models\model.pkl
+2026-05-04 21:32:51 | __main__             | INFO     | [EVALUATE] Dataset cargado: 43780 filas
+2026-05-04 21:32:52 | __main__             | INFO     | [EVALUATE] Filas tras eliminar NaN: 42940 (840 eliminadas)
+2026-05-04 21:32:52 | __main__             | INFO     | ============================================================
+2026-05-04 21:32:52 | __main__             | INFO     | [EVALUATE] MÉTRICAS GLOBALES (IN-SAMPLE)
+2026-05-04 21:32:52 | __main__             | INFO     | ============================================================
+2026-05-04 21:32:52 | __main__             | INFO     | MAE  : 136.3184
+2026-05-04 21:32:52 | __main__             | INFO     | RMSE : 340.6242
+2026-05-04 21:32:52 | __main__             | INFO     | R²   : 0.9999
+2026-05-04 21:32:52 | __main__             | INFO     | ============================================================
+2026-05-04 21:32:52 | __main__             | INFO     | [EVALUATE] HOLDOUT TEMPORAL (OUT-OF-SAMPLE)
+2026-05-04 21:32:52 | __main__             | INFO     | ============================================================
+2026-05-04 21:32:52 | __main__             | INFO     | Train: 34352 filas
+2026-05-04 21:32:52 | __main__             | INFO     | Test : 8588 filas
+2026-05-04 21:32:52 | __main__             | INFO     | MAE  : 899.9711
+2026-05-04 21:32:52 | __main__             | INFO     | RMSE : 2098.4373
+2026-05-04 21:32:52 | __main__             | INFO     | R²   : 0.9945
+2026-05-04 21:32:52 | __main__             | INFO     | ============================================================
+2026-05-04 21:32:52 | __main__             | INFO     | [EVALUATE] VALIDACIÓN TEMPORAL POR FOLDS
+2026-05-04 21:32:52 | __main__             | INFO     | ============================================================
+2026-05-04 21:32:52 | __main__             | INFO     | Fold 1: MAE=2013.1193 | RMSE=4072.8826 | R²=0.9921
+2026-05-04 21:32:52 | __main__             | INFO     | Fold 2: MAE=305.3616 | RMSE=1180.4403 | R²=0.9993
+2026-05-04 21:32:52 | __main__             | INFO     | Fold 3: MAE=12426.0588 | RMSE=29433.9447 | R²=0.3373
+2026-05-04 21:32:52 | __main__             | INFO     | Fold 4: MAE=6407.7562 | RMSE=18180.6695 | R²=0.6680
+2026-05-04 21:32:52 | __main__             | INFO     | Fold 5: MAE=354.4041 | RMSE=924.7990 | R²=0.9990
+2026-05-04 21:32:52 | __main__             | INFO     | Media folds: MAE=4301.3400 | RMSE=10758.5472 | R²=0.7991
+2026-05-04 21:32:52 | __main__             | INFO     | ============================================================
+2026-05-04 21:32:52 | __main__             | INFO     | [EVALUATE] MÉTRICAS POR CRYPTO
+2026-05-04 21:32:52 | __main__             | INFO     | ============================================================
+2026-05-04 21:32:52 | __main__             | INFO     | BinanceCoin     MAE=27.9717 | RMSE=43.0146 | R²=0.9334
+2026-05-04 21:32:52 | __main__             | INFO     | Bitcoin         MAE=570.2437 | RMSE=755.8862 | R²=0.9982
+2026-05-04 21:32:52 | __main__             | INFO     | Ethereum        MAE=50.4662 | RMSE=77.0710 | R²=0.9914
+2026-05-04 21:32:52 | __main__             | INFO     | Ripple          MAE=17.1996 | RMSE=19.7265 | R²=-1064.7151
+2026-05-04 21:32:52 | __main__             | INFO     | Solana          MAE=15.7106 | RMSE=24.1048 | R²=0.7189
+2026-05-04 21:32:52 | __main__             | INFO     | ============================================================
+2026-05-04 21:32:52 | __main__             | INFO     | [EVALUATE] IMPORTANCIA DE FEATURES
+2026-05-04 21:32:52 | __main__             | INFO     | ============================================================
+2026-05-04 21:32:52 | __main__             | INFO     | 
+market_cap        0.581835
+volatility_30d    0.318368
+volume_24h        0.059469
+month             0.033249
+crypto_encoded    0.006257
+change_7d_pct     0.000251
+change_24h_pct    0.000208
+rsi_14            0.000189
+hour              0.000102
+change_1h_pct     0.000036
+day_of_week       0.000035
+2026-05-04 21:32:52 | __main__             | INFO     | ============================================================
+2026-05-04 21:32:52 | __main__             | INFO     | [EVALUATE] Predicciones exportadas: C:\Users\Usuario\Desktop\crypto-predict\crypto-predict\outputs\predicciones_evaluacion.csv
